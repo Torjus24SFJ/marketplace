@@ -1,4 +1,7 @@
-import { useContext } from "react"
-import { ProductListContext } from "../DataContext/DataContext"
+import { useContext } from "react";
+import { ProductListContext } from "../DataContext/DataContext";
 
-export const useData = () => useContext(ProductListContext);
+export function useData() {
+  const { productList } = useContext(ProductListContext);
+  return { productList };
+}
