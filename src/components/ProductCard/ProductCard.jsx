@@ -5,19 +5,22 @@ export const ProductCard = () => {
   console.log("Product-List:", productList);
 
   return (
-    <div>
-      {productList.map((product) => {
-        return (
-          <li key={product.id}>
-            <div className="">
-            <img src={product.image} alt="product-image" className=""/>
+    <div className="container mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {productList.map((product) => {
+          return (
+            <div
+              key={product.id}
+              className="flex flex-col items-center justify-center text-center p-8 gap-6"
+            >
+              <img src={product.image} alt="product-image" className="" />
+              <h2 className="font-bold truncate w-full overflow-hidden">{product.title}</h2>
+              {/* <p>{product.description}</p> */}
+              <p className="italic">Price: ${product.price}</p>
             </div>
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-          </li>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
