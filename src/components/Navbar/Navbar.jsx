@@ -33,7 +33,7 @@ export function NavBar() {
             {categories.map((category) => (
               <li
                 key={category}
-                onClick={handleCategoryClick}
+                onClick={() => handleCategoryClick(category)}
                 className="rounded-2xl bg-neutral-300 justify-between p-4 cursor-pointer hover:bg-neutral-400"
               >{category}</li>
             ))}

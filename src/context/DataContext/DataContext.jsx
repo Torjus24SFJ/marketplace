@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         setProductList(data);
-        console.log(data);
+        console.log("Fetched productList: ",data);
       })
       .catch((error) => console.log("Error fetching product data", error));
   }, []);
@@ -23,7 +23,9 @@ export const DataProvider = ({ children }) => {
     ...new Set(productList.map((product) => product.category)),
   ];
 
-  const filteredProducts = selectedCategory ? productList.filter((product) => product.category === selectedCategory) : productList;
+  const filteredProducts = selectedCategory 
+  ? productList.filter((product) => product.category === selectedCategory)
+  : productList;
 
   const value = {
     categories,
