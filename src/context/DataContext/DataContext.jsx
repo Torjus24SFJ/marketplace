@@ -19,7 +19,7 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   const categories = [
-    "All",
+    "Browse All",
     ...new Set(productList.map((product) => product.category)),
   ];
 

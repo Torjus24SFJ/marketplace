@@ -1,9 +1,9 @@
-import { NavBar } from "../Navbar/Navbar";
+import { SideBar } from "../SideBar/SideBar";
 
 export function Layout( {children} ) {
   return (
     <div className="flex">
-        <NavBar />
+        <SideBar />
         <main className="p-4">
             {children}
         </main>
