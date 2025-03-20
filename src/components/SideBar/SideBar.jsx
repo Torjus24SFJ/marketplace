@@ -35,17 +35,17 @@ export function SideBar() {
         </div>
         {isOpen && (
           <div className="h-screen text-center">
-            <ul className="flex flex-col">
+            <ul className="flex flex-col mt-8 gap-10">
               {categories.map((category) => (
                 <li
                   key={category}
                   onClick={() => handleCategoryClick(category)}
-                  className="rounded-[8px] bg-[#272626] p-4 cursor-pointer mt-8 text-neutral-600 hover:text-neutral-500 font-bold capitalize"
+                  className="rounded-[8px] bg-[#272626] p-4 cursor-pointer text-neutral-600 hover:text-neutral-500 font-bold capitalize"
                 >
                   {category}
                 </li>
               ))}
-              <li className="rounded-[8px] bg-[#4a4949] p-4 cursor-pointer mt-8 text-neutral-600">
+              <li className="rounded-[8px] bg-[#4a4949] p-4 cursor-pointer text-neutral-600">
                 <form action="" className="flex" onClick={(e) => e.preventDefault()}>
                   <input
                     type="text"
@@ -63,4 +63,4 @@ export function SideBar() {
   );
 }
 
-//!TODO Search field pushes content out of page if search query is too long */
+//!TODO Search field pushes content out of page if search query is too long (mobile resolution)*/
