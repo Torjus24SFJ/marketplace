@@ -1,5 +1,4 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
 import { useData } from "../../hooks/useData";
 
@@ -48,7 +47,6 @@ export function SideBar() {
               ))}
               <li className="rounded-[8px] bg-[#4a4949] p-4 cursor-pointer mt-8 text-neutral-600">
                 <form action="" className="flex" onClick={(e) => e.preventDefault()}>
-                  {/* <IoIosSearch size={30} className="justify-center"/> */}
                   <input
                     type="text"
                     placeholder="Search..."
