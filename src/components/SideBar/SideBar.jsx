@@ -1,11 +1,12 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import { useData } from "../../hooks/useData";
+import { ProductList } from "../ProductList/ProductList";
 
 export function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { categories, setSelectedCategory, setSearchQuery } = useData();
-  // const [isAdded, setIsAdded] = useState(false);
+  const { categories, setSelectedCategory, setSearchQuery, ProductList , setProductList } = useData();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,6 +18,22 @@ export function SideBar() {
 
   const handleSearchQuery = (e) => {
     setSearchQuery(e.target.value)
+  }
+
+  const handleAddProduct = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const newProduct = {
+      id: ProductList.length + 1,
+      title: formData.get("title"),
+      category: formData.get("category"),
+      price: parseFloat(formData.get("price")),
+      description: formData.get("description"),
+      image: "https://via.placeholder.com/1",
+    }
+    setProductList([...ProductList, newProduct])
+    setIsAdded(false)
+    e.target.reset()
   }
 
   return (
@@ -34,7 +51,7 @@ export function SideBar() {
           />
         </div>
         {isOpen && (
-          <div className="h-screen text-center">
+          <div className="h-screen text-center overflow-y-auto">
             <ul className="flex flex-col mt-8 gap-10">
               {categories.map((category) => (
                 <li
