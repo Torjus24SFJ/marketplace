@@ -6,14 +6,14 @@ export const ProductListContext = createContext();
 export const DataProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((data) => {
         setProductList(data);
-        console.log("Fetched productList: ",data);
+        console.log("Fetched productList: ", data);
       })
       .catch((error) => console.log("Error fetching product data", error));
   }, []);
@@ -23,18 +23,25 @@ export const DataProvider = ({ children }) => {
     ...new Set(productList.map((product) => product.category)),
   ];
 
-  const filteredProducts = selectedCategory 
-  ? productList.filter((product) => product.category === selectedCategory)
-  : productList;
+  const filteredProducts = productList
+    .filter((product) =>
+      selectedCategory ? product.category === selectedCategory : true
+    )
+    .filter((product) =>
+      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  product.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const value = {
     categories,
     filteredProducts,
     selectedCategory,
-    setSelectedCategory,
     productList,
-    setProductList
-  }
+    searchQuery,
+    setSelectedCategory,
+    setProductList,
+    setSearchQuery
+  };
 
   return (
     <ProductListContext.Provider value={value}>
@@ -42,5 +49,3 @@ export const DataProvider = ({ children }) => {
     </ProductListContext.Provider>
   );
 };
-
-
