@@ -13,7 +13,7 @@ export const ProductCard = () => {
               key={product.id}
               className="flex flex-col items-center justify-center text-center p-8 gap-6"
             >
-              <img src={product.image} alt="product-image" />
+              <img src={product.image} alt="product-image" className="w-[250px] h-[250px] object-scale-down"/>
               <h2 className="font-bold truncate w-full overflow-hidden">{product.title}</h2>
               {/* <p>{product.description}</p> */}
               <p className="italic">Price: ${product.price}</p>
