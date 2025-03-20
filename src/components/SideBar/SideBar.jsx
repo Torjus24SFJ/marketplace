@@ -22,7 +22,7 @@ export function SideBar() {
 
   return (
     <div
-      className={`min-h-auto transition-all duration-300 bg-[#252728] ${
+      className={`min-h-auto transition-all duration-300 bg-[#202020] ${
         isOpen ? "w-40 md:w-72" : "w-20"
       } text-black`}
     >
@@ -41,18 +41,18 @@ export function SideBar() {
                 <li
                   key={category}
                   onClick={() => handleCategoryClick(category)}
-                  className="rounded-[8px] bg-neutral-800 p-4 cursor-pointer mt-8 text-neutral-600 hover:text-neutral-500 font-bold capitalize"
+                  className="rounded-[8px] bg-[#272626] p-4 cursor-pointer mt-8 text-neutral-600 hover:text-neutral-500 font-bold capitalize"
                 >
                   {category}
                 </li>
               ))}
-              <li className="rounded-[8px] bg-neutral-800 p-4 cursor-pointer mt-8 text-neutral-600">
+              <li className="rounded-[8px] bg-[#4a4949] p-4 cursor-pointer mt-8 text-neutral-600">
                 <form action="" className="flex" onClick={(e) => e.preventDefault()}>
                   {/* <IoIosSearch size={30} className="justify-center"/> */}
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full bg-transparent focus:outline-none focus:ring-0 text-neutral-400 placeholder-neutral-600 text-center"
+                    className="w-full bg-transparent focus:outline-none focus:ring-0 text-neutral-400 placeholder-neutral-400 text-center"
                     onChange={handleSearchQuery}
                   />
                 </form>
@@ -64,3 +64,5 @@ export function SideBar() {
     </div>
   );
 }
+
+//!TODO Search field pushes content out of page if search query is too long */

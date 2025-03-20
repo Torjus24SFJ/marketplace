@@ -12,7 +12,7 @@ export const ProductCard = () => {
               key={product.id}
               className="flex flex-col items-center justify-center text-center p-8 gap-6 text-[#f1f1f1] rounded-[10px] cursor-pointer"
             >
-              <img src={product.image} alt="product-image" className="w-[200px] h-[200px] object-scale-down rounded-[12px] bg-white"/>
+              <img src={product.image} alt="product-image" className="w-[200px] h-[200px] object-scale-down rounded-[12px] bg-white transform delay-50 hover:scale-105"/>
               <h2 className="font-bold truncate w-full overflow-hidden hover:text-[#d1d1d1]">{product.title}</h2>
               <p className="italic">Price: ${product.price}</p>
             </div>
