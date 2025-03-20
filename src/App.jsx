@@ -5,11 +5,11 @@ import { Layout } from "./components/Layout/Layout";
 function App() {
   return (
     <>
-    <Layout>
       <DataProvider>
-        <ProductCard />
+        <Layout>
+          <ProductCard />
+        </Layout>
       </DataProvider>
-    </Layout>
     </>
   );
 }

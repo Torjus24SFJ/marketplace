@@ -1,13 +1,12 @@
-import { useData } from "../../context/DataContext/useData";
+import { useData } from "../../hooks/useData";
 
 export const ProductCard = () => {
-  const { productList } = useData();
-  console.log("Product-List:", productList);
+  const { filteredProducts } = useData();
 
   return (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {productList.map((product) => {
+        {filteredProducts.map((product) => {
           return (
             <div
               key={product.id}
