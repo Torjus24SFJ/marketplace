@@ -1,4 +1,5 @@
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { useData } from "../../hooks/useData";
 
@@ -29,21 +30,21 @@ export function SideBar() {
     setSearchQuery(e.target.value);
   };
 
-  // const handleAddProduct = (e) => {
-  //   e.preventDefault()
-  //   const formData = new FormData(e.target)
-  //   const newProduct = {
-  //     id: productList.length + 1,
-  //     title: formData.get("title"),
-  //     category: formData.get("category"),
-  //     price: parseFloat(formData.get("price")),
-  //     description: formData.get("description"),
-  //     image: "https://via.placeholder.com/1",
-  //   }
-  //   setProductList([...productList, newProduct])
-  //   setIsAdded(false)
-  //   e.target.reset()
-  // }
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newProduct = {
+      id: productList.length + 1,
+      title: formData.get("title"),
+      category: formData.get("category"),
+      price: parseFloat(formData.get("price")),
+      description: formData.get("description"),
+      image: "https://via.placeholder.com/1",
+    };
+    setProductList([...productList, newProduct]);
+    setModalOpen(false);
+    e.target.reset();
+  };
 
   return (
     <div
@@ -64,36 +65,48 @@ export function SideBar() {
             <ul className="flex flex-col mt-8">
               <button
                 onClick={handleModal}
-                className="h-20 bg-amber-300 cursor-pointer"
+                className="h-20 bg-green-500 text-white font-bold cursor-pointer"
               >
-                Click me!
+                Create New Listing
               </button>
               {modalOpen && (
-                <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-10">
-                  <div className="bg-white rounded-1g h-150 w-150">
-                    <h1 className="text-black font-bold mb-4 text-xl">
-                      Modal Title
-                    </h1>
-                    <p className="text-gray-700">This is modal text</p>
-                    <button
-                      onClick={handleModal}
-                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                    >
-                      Close
-                    </button>
+                <div className="fixed inset-0 bg-black/75 backdrop-blur-xs flex justify-center items-center z-10">
+                  <div className="bg-white rounded-xl h-140 w-100 md:h-150 md:w-150">
+                    <div className="flex justify-start">
+                      <div
+                        className="p-4 font-bold cursor-pointer text-[20px]"
+                        onClick={handleModal}
+                      >
+                        <IoClose size={30} />
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-8">
+                      <h1 className="text-black font-bold mb-4 text-xl">
+                        Create New Listing!
+                      </h1>
+                      <form onSubmit={handleAddProduct} className="text-black flex flex-col gap-8">
+                        <input
+                          type="text"
+                          name="title"
+                          placeholder="Product name..."
+                          required
+                        />
+                        <select name="categories" required>
+                          <option selected disabled>Category</option>
+                        </select>
+                        <input type="text" name="price" placeholder="Set price.." required />
+                        <textarea name="description" placeholder="Description" className="h-20 w-80 focus:outline-none border-2 border-neutral-300"/>
+                      </form>
+                      <button
+                        onClick={handleModal}
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-25"
+                      >
+                        Add now
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
-
-              {/* ADD MODAL */}
-              {/* <form onSubmit={handleAddProduct} className="text-white">
-                <input type="text" name="title" placeholder="Product Name" required />
-                <select name="categories" required></select>
-                <input type="number" name="price" placeholder="Price" required />
-                <textarea name="description" placeholder="Description" required />
-                <button type="submit">Submit</button>
-              </form> */}
-              {/* className="w-full p-4 bg-neutral-600 text-neutral-400 hover:text-neutral-300 font-bold cursor-pointer" */}
               {categories.map((category) => (
                 <li
                   key={category}
@@ -126,4 +139,5 @@ export function SideBar() {
 }
 
 //!TODO Search field pushes content out of page if search query is too long (mobile resolution)*/
+//!TODO Search within category will only search for category products - should be all products
 //!TODO Fix - Hamburger bar vanishing*/
