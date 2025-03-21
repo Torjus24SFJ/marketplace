@@ -31,7 +31,7 @@ export function SideBar() {
 
   return (
     <div
-      className={`min-h-auto transition-all duration-300 bg-[#202020] ${
+      className={`min-h-auto transition-all duration-300 bg-[#252728] ${
         isOpen ? "w-40 md:w-72" : "w-20"
       } text-black`}
     >
@@ -40,15 +40,15 @@ export function SideBar() {
           <RxHamburgerMenu
             size={30}
             onClick={handleMenu}
-            className="cursor-pointer text-neutral-600 hover:text-neutral-500"
+            className="cursor-pointer text-neutral-200 hover:text-neutral-300"
           />
         </div>
         {isOpen && (
           <div className="h-screen text-center overflow-y-auto">
-            <ul className="flex flex-col mt-8">
+            <ul className="flex flex-col mt-8 gap-4">
               <button
                 onClick={handleModal}
-                className="h-20 bg-green-500 text-white font-bold cursor-pointer hover:bg-green-600"
+                className="p-4 bg-[#252728] text-neutral-200 cursor-pointer hover:bg-[#3b3d3e] rounded-2xl font-bold"
               >
                 Create New Listing
               </button>
@@ -63,12 +63,12 @@ export function SideBar() {
                 <li
                   key={category}
                   onClick={() => handleCategoryClick(category)}
-                  className="bg-[#272626] p-10 cursor-pointer text-neutral-600 hover:text-neutral-500 font-bold capitalize"
+                  className="bg-[#252728] p-4 cursor-pointer text-neutral-200 hover:bg-[#3b3d3e] rounded-xl capitalize"
                 >
                   {category}
                 </li>
               ))}
-              <li className="bg-[#4a4949] p-4 cursor-pointer text-neutral-600">
+              <li className="bg-[#252728] p-4 cursor-pointer text-neutral-600">
                 <form
                   action=""
                   className="flex"
@@ -77,7 +77,7 @@ export function SideBar() {
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full bg-transparent focus:outline-none focus:ring-0 text-neutral-400 placeholder-neutral-400 text-center"
+                    className="w-full bg-transparent rounded focus:outline-none focus:ring-0 text-neutral-200 placeholder-neutral-40 border-2 border-[#3b3d3e] p-2"
                     onChange={handleSearchQuery}
                   />
                 </form>
