@@ -13,10 +13,13 @@ export function SideBar() {
     setProductList,
   } = useData();
   const [modalOpen, setModalOpen] = useState(false);
-
-  const handleModal = () => {
-    setModalOpen(!modalOpen);
-  };
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    price: "",
+    description: "",
+    image: null,
+  });
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
@@ -30,21 +33,58 @@ export function SideBar() {
     setSearchQuery(e.target.value);
   };
 
+  //* Open / close modal
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  //* Input change for modal
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  //* Image
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        image: URL.createObjectURL(file),
+      }));
+    }
+  };
+
+  //* Adding product in modal
   const handleAddProduct = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+
     const newProduct = {
       id: productList.length + 1,
-      title: formData.get("title"),
-      category: formData.get("category"),
-      price: parseFloat(formData.get("price")),
-      description: formData.get("description"),
-      image: "https://via.placeholder.com/1",
+      title: formData.title,
+      category: formData.category,
+      price: parseFloat(formData.price),
+      description: formData.description,
+      image: formData.image || "https://i.imgur.com/yQ7PDQj.png",
     };
+
     setProductList([...productList, newProduct]);
+    setFormData({
+      title: "",
+      category: "",
+      price: "",
+      description: "",
+      image: null,
+    });
     setModalOpen(false);
-    e.target.reset();
   };
+
+  const filteredCategories = categories.filter(
+    (category) => category !== "Browse All"
+  );
 
   return (
     <div
@@ -80,29 +120,68 @@ export function SideBar() {
                         <IoClose size={30} />
                       </div>
                     </div>
-                    <div className="flex flex-col justify-center items-center gap-8">
+                    <div className="flex flex-col justify-center items-center gap-8 ">
                       <h1 className="text-black font-bold mb-4 text-xl">
                         Create New Listing!
                       </h1>
-                      <form onSubmit={handleAddProduct} className="text-black flex flex-col gap-8">
+                      <form
+                        onSubmit={handleAddProduct}
+                        className="text-black flex flex-col gap-8"
+                      >
                         <input
                           type="text"
                           name="title"
+                          value={formData.title}
                           placeholder="Product name..."
+                          onChange={handleInputChange}
+                          className="focus:outline-none"
                           required
                         />
-                        <select name="categories" required>
-                          <option selected disabled>Category</option>
+                        <select
+                          name="category"
+                          value={formData.category}
+                          onChange={handleInputChange}
+                          required
+                        >
+                          <option value="" disabled>
+                            Select Category
+                          </option>
+                          {filteredCategories.map((catfilter) => (
+                            <option key={catfilter} value={catfilter}>
+                              {catfilter}
+                            </option>
+                          ))}
                         </select>
-                        <input type="text" name="price" placeholder="Set price.." required />
-                        <textarea name="description" placeholder="Description" className="h-20 w-80 focus:outline-none border-2 border-neutral-300"/>
+                        <input
+                          type="text"
+                          name="price"
+                          value={formData.price}
+                          placeholder="Set price.."
+                          className="focus:outline-none"
+                          onChange={handleInputChange}
+                          required
+                        />
+                        <textarea
+                          name="description"
+                          placeholder="Description"
+                          value={formData.description}
+                          onChange={handleInputChange}
+                          className="h-20 w-80 focus:outline-none border-2 border-neutral-300"
+                        />
+                        <input
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                          className="w-full p-2 cursor-pointer bg-neutral-200 border-2 border-neutral-400"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-25 cursor-pointer"
+                        >
+                          Add now
+                        </button>
                       </form>
-                      <button
-                        onClick={handleModal}
-                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-25"
-                      >
-                        Add now
-                      </button>
                     </div>
                   </div>
                 </div>
