@@ -152,15 +152,18 @@ export function SideBar() {
                             </option>
                           ))}
                         </select>
-                        <input
-                          type="text"
-                          name="price"
-                          value={formData.price}
-                          placeholder="Set price.."
-                          className="focus:outline-none"
-                          onChange={handleInputChange}
-                          required
-                        />
+                        <div className="flex flex-row">
+                          <input
+                            type="text"
+                            name="price"
+                            value={formData.price}
+                            placeholder="Set price.."
+                            className="focus:outline-none"
+                            onChange={handleInputChange}
+                            required
+                          />
+                          <span>$</span>
+                        </div>
                         <textarea
                           name="description"
                           placeholder="Description"
