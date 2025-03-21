@@ -1,12 +1,21 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import { useData } from "../../hooks/useData";
-import { ProductList } from "../ProductList/ProductList";
 
 export function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { categories, setSelectedCategory, setSearchQuery, ProductList , setProductList } = useData();
-  const [isAdded, setIsAdded] = useState(false);
+  const {
+    categories,
+    setSelectedCategory,
+    setSearchQuery,
+    productList,
+    setProductList,
+  } = useData();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,24 +26,24 @@ export function SideBar() {
   };
 
   const handleSearchQuery = (e) => {
-    setSearchQuery(e.target.value)
-  }
+    setSearchQuery(e.target.value);
+  };
 
-  const handleAddProduct = (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    const newProduct = {
-      id: ProductList.length + 1,
-      title: formData.get("title"),
-      category: formData.get("category"),
-      price: parseFloat(formData.get("price")),
-      description: formData.get("description"),
-      image: "https://via.placeholder.com/1",
-    }
-    setProductList([...ProductList, newProduct])
-    setIsAdded(false)
-    e.target.reset()
-  }
+  // const handleAddProduct = (e) => {
+  //   e.preventDefault()
+  //   const formData = new FormData(e.target)
+  //   const newProduct = {
+  //     id: productList.length + 1,
+  //     title: formData.get("title"),
+  //     category: formData.get("category"),
+  //     price: parseFloat(formData.get("price")),
+  //     description: formData.get("description"),
+  //     image: "https://via.placeholder.com/1",
+  //   }
+  //   setProductList([...productList, newProduct])
+  //   setIsAdded(false)
+  //   e.target.reset()
+  // }
 
   return (
     <div
@@ -52,18 +61,54 @@ export function SideBar() {
         </div>
         {isOpen && (
           <div className="h-screen text-center overflow-y-auto">
-            <ul className="flex flex-col mt-8 gap-10">
+            <ul className="flex flex-col mt-8">
+              <button
+                onClick={handleModal}
+                className="h-20 bg-amber-300 cursor-pointer"
+              >
+                Click me!
+              </button>
+              {modalOpen && (
+                <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-10">
+                  <div className="bg-white rounded-1g h-150 w-150">
+                    <h1 className="text-black font-bold mb-4 text-xl">
+                      Modal Title
+                    </h1>
+                    <p className="text-gray-700">This is modal text</p>
+                    <button
+                      onClick={handleModal}
+                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* ADD MODAL */}
+              {/* <form onSubmit={handleAddProduct} className="text-white">
+                <input type="text" name="title" placeholder="Product Name" required />
+                <select name="categories" required></select>
+                <input type="number" name="price" placeholder="Price" required />
+                <textarea name="description" placeholder="Description" required />
+                <button type="submit">Submit</button>
+              </form> */}
+              {/* className="w-full p-4 bg-neutral-600 text-neutral-400 hover:text-neutral-300 font-bold cursor-pointer" */}
               {categories.map((category) => (
                 <li
                   key={category}
                   onClick={() => handleCategoryClick(category)}
-                  className="rounded-[8px] bg-[#272626] p-4 cursor-pointer text-neutral-600 hover:text-neutral-500 font-bold capitalize"
+                  className="bg-[#272626] p-10 cursor-pointer text-neutral-600 hover:text-neutral-500 font-bold capitalize"
                 >
                   {category}
                 </li>
               ))}
-              <li className="rounded-[8px] bg-[#4a4949] p-4 cursor-pointer text-neutral-600">
-                <form action="" className="flex" onClick={(e) => e.preventDefault()}>
+              <li className="bg-[#4a4949] p-4 cursor-pointer text-neutral-600">
+                <form
+                  action=""
+                  className="flex"
+                  onClick={(e) => e.preventDefault()}
+                >
                   <input
                     type="text"
                     placeholder="Search..."
@@ -81,3 +126,4 @@ export function SideBar() {
 }
 
 //!TODO Search field pushes content out of page if search query is too long (mobile resolution)*/
+//!TODO Fix - Hamburger bar vanishing*/
