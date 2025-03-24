@@ -3,9 +3,13 @@ import { useState } from "react";
 import { useData } from "../../hooks/useData";
 import { CreateListing } from "../CreateListing/CreateListing";
 import { SearchBar } from "../Searchbar/Searchbar";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
   const {
     categories,
     setSelectedCategory,
@@ -29,6 +33,8 @@ export function SideBar() {
     (category) => category !== "Browse All"
   );
 
+  const isItemPage = pathname.startsWith("/product/")
+
   return (
     <div
       className={`min-h-screen transition-all duration-300 bg-[#252728] ${
@@ -36,14 +42,22 @@ export function SideBar() {
       } text-black`}
     >
       <div className="sticky top-0 left-0">
-        <div className="p-4">
+        <div className="p-4 flex items-center">
           <RxHamburgerMenu
             size={30}
             onClick={handleMenu}
             className="cursor-pointer text-neutral-200 hover:text-neutral-300"
           />
+          {isOpen && isItemPage && (
+            <Link to="/" className="ml-4">
+              <IoMdArrowRoundBack
+                size={30}
+                className="cursor-pointer text-neutral-200 hover:text-neutral-300"
+              />
+            </Link>
+          )}
         </div>
-        {isOpen && (
+        {isOpen && !isItemPage && (
           <div className="h-screen text-center overflow-y-auto">
             <ul className="flex flex-col mt-8 gap-4">
               <button
@@ -68,7 +82,7 @@ export function SideBar() {
                   {category}
                 </li>
               ))}
-            <SearchBar setSearchQuery={setSearchQuery}/>
+              <SearchBar setSearchQuery={setSearchQuery} />
             </ul>
           </div>
         )}
@@ -76,7 +90,6 @@ export function SideBar() {
     </div>
   );
 }
-
 //!TODO Search field pushes content out of page if search query is too long (mobile resolution)*/
 //!TODO Search within category will only search for category products - should be all products
-//!TODO Fix - Hamburger bar vanishing*/
+//!TODO Fix - Hamburger bar vanishing

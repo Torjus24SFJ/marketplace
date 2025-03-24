@@ -6,7 +6,7 @@ export const ProductList = () => {
   const { filteredProducts } = useData();
 
   if (!filteredProducts || filteredProducts.length === 0) {
-    return <h4 className="text-[#f1f1f1] text-center p-4">No products available</h4>;
+    return 
   }
 
   return (

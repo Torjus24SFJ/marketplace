@@ -13,7 +13,7 @@ export const ItemPage = () => {
 
   return (
     <div className="min-h-screen px-4 py-8 text-[#f1f1f1]">
-        <div className="w-100 h-fit bg-[#252728] p-8 ml-10 rounded-[10px] flex flex-col">
+        <div className="w-100 h-fit bg-[#252728] p-8 rounded-[10px] flex flex-col">
           <img
             src={product.image}
             alt={product.title}
@@ -21,8 +21,7 @@ export const ItemPage = () => {
           />
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
           <p className="italic mb-2">Price: ${product.price}</p>
-          <p className="mb-2">Category: {product.category}</p>
-          <p>{product.description}</p>
+          <p className="text-[14px] text-neutral-400 first-letter:capitalize">{product.description}</p>
         </div>
     </div>
   );
