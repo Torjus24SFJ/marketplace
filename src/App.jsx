@@ -9,7 +9,9 @@ function App() {
       <Router>
         <DataProvider>
           <Layout>
-            <ProductCard />
+            <Routes>
+              <Route path="/" element={<ProductCard />} />
+            </Routes>
           </Layout>
         </DataProvider>
       </Router>
