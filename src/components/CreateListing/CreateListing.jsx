@@ -1,5 +1,5 @@
 import { IoClose } from "react-icons/io5";
-import { useCreateListing } from "../../hooks/useCreateListing";
+import useCreateListing from "../../hooks/useCreateListing";
 
 export function CreateListing({
   productList,

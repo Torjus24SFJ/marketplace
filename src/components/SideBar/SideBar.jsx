@@ -2,6 +2,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import { useData } from "../../hooks/useData";
 import { CreateListing } from "../CreateListing/CreateListing";
+import { SearchBar } from "../Searchbar/Searchbar";
 
 export function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,6 @@ export function SideBar() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === "Browse All" ? null : category);
   };
-  const handleSearchQuery = (e) => setSearchQuery(e.target.value);
 
   //* Open / close modal
   const handleModal = () => {
@@ -68,20 +68,7 @@ export function SideBar() {
                   {category}
                 </li>
               ))}
-              <li className="bg-[#252728] p-4 cursor-pointer text-neutral-600">
-                <form
-                  action=""
-                  className="flex"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="w-full bg-transparent rounded focus:outline-none focus:ring-0 text-neutral-200 placeholder-neutral-40 border-2 border-[#3b3d3e] p-2"
-                    onChange={handleSearchQuery}
-                  />
-                </form>
-              </li>
+            <SearchBar setSearchQuery={setSearchQuery}/>
             </ul>
           </div>
         )}

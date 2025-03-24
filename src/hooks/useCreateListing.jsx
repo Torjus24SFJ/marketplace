@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useCreateListing = (productList, setProductList, handleModal) => {
+const useCreateListing = (productList, setProductList, handleModal) => {
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -8,8 +8,6 @@ export const useCreateListing = (productList, setProductList, handleModal) => {
     description: "",
     image: null,
   });
-
- 
 
   //* Image preview
   const handleFilePreview = (e) => {
@@ -53,3 +51,5 @@ export const useCreateListing = (productList, setProductList, handleModal) => {
     handleFilePreview
   }
 };
+
+export default useCreateListing;
