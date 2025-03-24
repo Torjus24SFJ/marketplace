@@ -41,7 +41,7 @@ export function SideBar() {
         isOpen ? "w-40 md:w-72" : "w-20"
       } text-black`}
     >
-      <div className="sticky top-0 left-0">
+      <div className="sticky top-0 left-0 z-[10]">
         <div className="p-4 flex items-center">
           <RxHamburgerMenu
             size={30}
