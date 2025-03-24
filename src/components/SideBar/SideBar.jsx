@@ -31,7 +31,7 @@ export function SideBar() {
 
   return (
     <div
-      className={`min-h-auto transition-all duration-300 bg-[#252728] ${
+      className={`min-h-screen transition-all duration-300 bg-[#252728] ${
         isOpen ? "w-40 md:w-72" : "w-20"
       } text-black`}
     >
