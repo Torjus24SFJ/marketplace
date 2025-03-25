@@ -93,7 +93,7 @@ export function CreateListing({
             <img
               src={formData.image}
               alt="Preview"
-              className="w-full h-32 object-cover rounded mt-2"
+              className="w-full h-42 object-cover rounded mt-2"
             />
           )}
           <button
