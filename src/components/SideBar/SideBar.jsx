@@ -59,7 +59,7 @@ export function SideBar() {
         </div>
         {isOpen && !isItemPage && (
           <div className="h-screen text-center overflow-y-auto">
-            <ul className="flex flex-col mt-8 gap-4">
+            <ul className="flex flex-col mt-8 gap-12">
               <button
                 onClick={handleModal}
                 className="p-4 bg-[#252728] text-neutral-200 cursor-pointer hover:bg-[#3b3d3e] rounded-2xl font-bold"
