@@ -27,9 +27,10 @@ export const DataProvider = ({ children }) => {
     .filter((product) =>
       selectedCategory ? product.category === selectedCategory : true
     )
-    .filter((product) =>
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  product.category.toLowerCase().includes(searchQuery.toLowerCase())
+    .filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
   const value = {
@@ -40,7 +41,7 @@ export const DataProvider = ({ children }) => {
     searchQuery,
     setSelectedCategory,
     setProductList,
-    setSearchQuery
+    setSearchQuery,
   };
 
   return (

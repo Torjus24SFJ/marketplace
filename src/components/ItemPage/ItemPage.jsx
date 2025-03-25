@@ -12,8 +12,8 @@ export const ItemPage = () => {
   }
 
   return (
-    <section className="min-h-screen px-4 py-8 text-[#f1f1f1]">
-        <div className="w-100 h-fit bg-[#252728] p-8 rounded-[10px] flex flex-col">
+    <section className="px-4 py-8">
+        <div className="w-100 h-fit bg-[#252728] text-[#f1f1f1] p-8 rounded-[10px] flex flex-col">
           <img
             src={product.image}
             alt={product.title}

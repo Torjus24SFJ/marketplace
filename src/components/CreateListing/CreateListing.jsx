@@ -23,7 +23,7 @@ export function CreateListing({
   if (!modalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/75 text-neutral-200  backdrop-blur-sm flex justify-center items-center z-10">
+    <div className="fixed inset-0 bg-black/75 text-neutral-300 backdrop-blur-sm flex justify-center items-center z-10">
       <div className="bg-[#1c1c1d] border-2 border-[#1c1c1d]/50 rounded-xl p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h1 className="font-bold text-xl">Create New Listing!</h1>
