@@ -90,6 +90,5 @@ export function SideBar() {
     </div>
   );
 }
-//!TODO Search field pushes content out of page if search query is too long (mobile resolution)*/
 //!TODO Search within category will only search for category products - should be all products
 //!TODO Fix - Hamburger bar vanishing
